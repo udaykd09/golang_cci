@@ -1,7 +1,11 @@
 package CallCenter
 
-import (
-	"fmt"
+type Rank int
+
+const (
+	RESPONDER Rank = 1 + iota
+	MANAGER
+	DIRECTOR
 )
 
 type Employee struct {
@@ -10,7 +14,6 @@ type Employee struct {
 }
 
 func NewEmployee(ch CallHandler) Employee {
-	
 }
 
 func (e *Employee) receiveCall(call Call){
@@ -26,12 +29,6 @@ func (e *Employee) escalate(call Call){
 	call.reply("escalating to next level")
 	call.increamentRank()
 	e.assignNewCall()
-}
-
-func (e *Employee) assignNewCall(){
-	if e.isFree(){
-		e.currentCall = call
-	}
 }
 
 func (e *Employee) isFree(){

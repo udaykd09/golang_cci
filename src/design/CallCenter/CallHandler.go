@@ -1,15 +1,6 @@
 package CallCenter
 
-import (
-	"fmt"
-)
-
-type Rank int
-
 const (
-	RESPONDER Rank = 1 + iota
-	MANAGER
-	DIRECTOR
 	NUM_RESPONDENTS = 10
 	NUM_MANAGERS = 4
 	NUM_DIRECTORS = 2
@@ -21,23 +12,46 @@ type CallHandler struct {
 	callQueues [][]Call
 }
 
-func newHandler() *CallHandler {
+func NewHandler() *CallHandler {
 	return &CallHandler{
 	}
 }
 
-func (ch *CallHandler) getHandlerForCall(call Call){
-	for e := range ch.employeeLevels[0]{
-		if 
+func addEmployees(rank Rank, e []Employee){
+	
+}
+
+func (ch *CallHandler) getHandlerForCall(call Call) *Employee{
+	for _, e := range ch.employeeLevels[0]{
+		if e.isFree() {
+			return &e
+		} else {
+			return nil
+		}
 	}
 }
 
-// from caller to employee
+// Create call obj
 func (ch *CallHandler) dispatchCall(caller Caller){
 	call := NewCall(caller)
 	ch.dispatchCall(call)
 }
 
+// find free employee and assign call  
 func (ch *CallHandler) dispatchCall(call Call){
-	emp := get
+	emp := ch.getHandlerForCall(call)
+	if emp != nil {
+		emp.receiveCall(call)
+		call.setHandler(emp)
+	} else {
+		// Append to call
+		call.reply("Please wait in Queue")
+		rank := call.getRank()
+		ch.callQueues[rank] = append(ch.callQueues[rank], call)
+	}
+}
+
+func (ch *CallHandler) assignCallFromQueue(e Employee) bool {
+		// Assign call to the employee from queue 
+		// and remove the call from the queue 
 }

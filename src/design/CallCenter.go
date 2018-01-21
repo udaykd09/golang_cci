@@ -11,9 +11,11 @@ package main
 
 import (
 	"fmt"
+	"design/CallCenter"
 )
 
 func main() {
-
+	ch := CallCenter.NewHandler()
+	fmt.Println(ch)
 }
 

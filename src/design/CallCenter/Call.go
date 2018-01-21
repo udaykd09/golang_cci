@@ -37,6 +37,10 @@ func (c *Call) increamentRank() {
 	}
 }
 
+func (c *Call) getRank() {
+	return c.rank
+}
+
 func (c *Call) reply(msg string) {
 	chat = append(c.chat, msg)
 }
